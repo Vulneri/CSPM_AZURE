@@ -1,6 +1,6 @@
 # CSPM_AZURE.sh
 
-# Criar Aplicação no Azure AD com Permissões e Role
+# Criar Aplicação no Azure AD com Permissões e Role através do shell script - Debian/Ubuntu
 
 Este script automatiza o processo de criação de uma aplicação no Azure Active Directory (Azure AD), geração de client secret, atribuição de permissões no Microsoft Graph e concessão da role `Reader` em uma subscription do Azure.
 
@@ -122,3 +122,107 @@ Caso encontre erros relacionados a permissões (ex: `Consent validation failed` 
 ## 📝 Licença
 
 Uso interno pela equipe Vulneri. Reutilização ou redistribuição requer autorização.
+
+
+
+
+
+
+# CSPM_AZURE.ps1
+# Script PowerShell: Registro Automático de Aplicação no Azure AD - Windows
+
+Este script PowerShell automatiza o processo de criação e configuração de uma aplicação no Azure Active Directory (Azure AD), ideal para integrações que exigem autenticação com `client_id` e `client_secret`.
+
+---
+
+## 🚀 Funcionalidades
+
+- Autenticação no Azure via CLI
+- Registro de aplicação no Azure AD
+- Criação de client secret
+- Concessão de permissões Microsoft Graph:
+  - Directory.Read.All
+  - Policy.Read.All
+  - UserAuthenticationMethod.Read.All
+- Criação de Service Principal
+- Atribuição da role `Reader` na subscription
+- Exportação das credenciais em um arquivo CSV
+-  Permitir execução temporária de scripts nesta sessão
+   - Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+---
+
+## 📋 Pré-requisitos
+
+- PowerShell 5.1+ ou PowerShell Core 7+
+- Permissões administrativas no Azure AD
+- Azure CLI instalado (o script instala automaticamente se não estiver presente)
+
+
+---
+
+## 📁 Arquivos Gerados
+
+- `vulneri_powershell_azure_credentials.csv`: Contém as seguintes colunas:
+  - `client_id`
+  - `client_secret`
+  - `tenant_id`
+  - `subscription_id`
+
+---
+
+## 🔧 Como Executar
+
+1. Baixe e salve o script como `access_azure.ps1`.
+
+2. No PowerShell, navegue até o diretório do script:
+
+```powershell
+cd "C:\caminho\para\o\script"
+```
+
+3. Execute o script:
+
+```powershell
+.ccess_azure.ps1
+```
+
+> 💡 O script aplica automaticamente a política de execução temporária com `Bypass` para permitir sua execução sem exigir alterações permanentes no sistema.
+
+---
+
+## 🛡️ Segurança
+
+- Os dados do client secret são exibidos e armazenados no CSV apenas no momento da criação.
+- Guarde o CSV em local seguro.
+- O client secret **não poderá ser recuperado** depois.
+
+---
+
+## 🧼 Exemplo de saída do CSV
+
+```
+client_id,client_secret,tenant_id,subscription_id
+e1234567-abcd-1234-abcd-e123456789ab,wxyzSecret9876,11111111-2222-3333-4444-555555555555,66666666-7777-8888-9999-000000000000
+```
+
+---
+
+## 📚 Referências
+
+- [Documentação do Azure CLI](https://learn.microsoft.com/cli/azure/)
+- [Permissões do Microsoft Graph](https://learn.microsoft.com/graph/permissions-reference)
+
+---
+
+## ✍️ Observações
+
+- O script evita interações manuais sempre que possível, priorizando uma execução fluida para automação.
+- Caso deseje alterar as permissões ou roles atribuídas, edite as variáveis no bloco de **CONFIGURAÇÃO INICIAL** do script.
+
+---
+
+## 🙋 Suporte
+
+Caso encontre erros ou deseje sugerir melhorias, entre em contato com a equipe de desenvolvimento.
+
+---

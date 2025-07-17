@@ -1,4 +1,4 @@
-# CSPM_AZURE
+# CSPM_AZURE.sh
 
 # Criar Aplicação no Azure AD com Permissões e Role
 
